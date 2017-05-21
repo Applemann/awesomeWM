@@ -14,3 +14,8 @@ sudo make install
 
 
 sudo apt-get install -y acpi xscreensaver
+
+
+echo "Into: /home/martin/.config/awesome/email-widget/*.py scripts insert your password.. "
+
+echo "DEBUG: awmtt start -C ~/.config/awesome/rc.lua"

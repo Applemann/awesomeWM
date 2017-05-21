@@ -324,6 +324,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, }, "s", hotkeys_popup.show_help, {description="show help", group="awesome"}),
     awful.key({ modkey, }, "r", awesome.restart, {description = "restart awesome", group = "awesome"}),
     awful.key({ modkey, }, "space", function () kbdcfg.switch() end, {description = "restart awesome", group = "awesome"}),
+    awful.key({ modkey, }, "l", function () awful.util.spawn_with_shell("xscreensaver-command -lock") end, {description = "lock screen", group = "awesome"}),
+    awful.key({ }, "Print", function () awful.util.spawn("scrot -e 'mv $f ~/Pictures/ 2>/dev/null'", false) end),
+    awful.key({ modkey }, "p", function () awful.util.spawn("scrot -e 'mv $f ~/Pictures/ 2>/dev/null'", false) end),
 
 
 
@@ -389,7 +392,6 @@ globalkeys = awful.util.table.join(
 
     awful.key({ modkey, }, "t", function () awful.spawn(terminal) end, {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, }, "q", awesome.quit, {description = "quit awesome", group = "awesome"}),
-    awful.key({ modkey, }, "l", function () awful.util.spawn_with_shell("xscreensaver-command -lock") end, {description = "lock screen", group = "awesome"}),
 
     awful.key({ modkey, }, "f", function () awful.util.spawn_with_shell("firefox") end, {description = "start firefox", group = "launcher"}),
     awful.key({ modkey, }, "m", function () awful.util.spawn_with_shell("thunderbird") end, {description = "start thunderbird", group = "launcher"}),
@@ -421,18 +423,18 @@ globalkeys = awful.util.table.join(
 
 
     -- Prompt
-    awful.key({ ctrlkey }, ";", function () awful.screen.focused().mypromptbox:run() end, {description = "run prompt", group = "launcher"}),
+    awful.key({ ctrlkey }, ";", function () awful.screen.focused().mypromptbox:run() end, {description = "run prompt", group = "launcher"})
 
-    awful.key({ modkey }, "x",
-              function ()
-                  awful.prompt.run {
-                    prompt       = "Run Lua code: ",
-                    textbox      = awful.screen.focused().mypromptbox.widget,
-                    exe_callback = awful.util.eval,
-                    history_path = awful.util.get_cache_dir() .. "/history_eval"
-                  }
-              end,
-              {description = "lua execute prompt", group = "awesome"})
+--    awful.key({ modkey }, "x",
+--              function ()
+--                  awful.prompt.run {
+--                    prompt       = "Run Lua code: ",
+--                    textbox      = awful.screen.focused().mypromptbox.widget,
+--                    exe_callback = awful.util.eval,
+--                    history_path = awful.util.get_cache_dir() .. "/history_eval"
+--                  }
+--              end,
+--              {description = "lua execute prompt", group = "awesome"})
 
 
 
