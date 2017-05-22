@@ -321,10 +321,11 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ modkey, }, "s", hotkeys_popup.show_help, {description="show help", group="awesome"}),
+    awful.key({ modkey, }, "h", hotkeys_popup.show_help, {description="show help", group="awesome"}),
     awful.key({ modkey, }, "r", awesome.restart, {description = "restart awesome", group = "awesome"}),
     awful.key({ modkey, }, "space", function () kbdcfg.switch() end, {description = "restart awesome", group = "awesome"}),
     awful.key({ modkey, }, "l", function () awful.util.spawn_with_shell("xscreensaver-command -lock") end, {description = "lock screen", group = "awesome"}),
+    awful.key({ modkey, }, "s", function () awful.util.spawn_with_shell("xscreensaver-command -lock && systemctl suspend -i") end, {description = "suspend computer", group = "awesome"}),
     awful.key({ }, "Print", function () awful.util.spawn("scrot -e 'mv $f ~/Pictures/ 2>/dev/null'", false) end),
     awful.key({ modkey }, "p", function () awful.util.spawn("scrot -e 'mv $f ~/Pictures/ 2>/dev/null'", false) end),
 
