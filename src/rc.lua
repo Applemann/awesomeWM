@@ -10,6 +10,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
+local net_widgets = require("net_widgets")
 require("battery")
 require("volume")
 require("email")
@@ -270,7 +271,16 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "bottom", screen = s })
+    s.mywibox = awful.wibar({ position = "bottom", screen = s, height = 20 })
+
+    -- Create net widgets
+    net_wireless = net_widgets.wireless({interface="wlan0"})
+    net_wired = net_widgets.indicator({
+        interfaces  = {"wlan0"},
+        timeout     = 5
+    })
+    net_internet = net_widgets.internet({indent = 0, timeout = 5})
+
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -287,6 +297,9 @@ awful.screen.connect_for_each_screen(function(s)
             mykeyboardlayout,
             email_icon,
             email_widget,
+--            net_wireless,
+--            net_wired,
+            net_internet,
             battery_widget,
             volume_widget,
             mytextclock,
@@ -314,8 +327,8 @@ end)
 root.buttons(awful.util.table.join(
     awful.button({ }, 1, function () mainmenu:hide() end),
     awful.button({ }, 3, function () mainmenu:toggle() end),
-    awful.button({ }, 4, awful.tag.viewnext),
-    awful.button({ }, 5, awful.tag.viewprev)
+    awful.button({ modkey }, 4, awful.tag.viewnext),
+    awful.button({ modkey }, 5, awful.tag.viewprev)
 ))
 -- }}}
 
@@ -355,6 +368,21 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, }, "k", function () awful.client.focus.byidx(-1) end, {description = "focus previous by index", group = "client"}),
 
 
+
+
+    awful.key({ modkey, "Control"   }, "Left", 
+    function()
+        for i = 1, screen.count() do
+            awful.tag.viewprev(i)
+        end
+    end ),
+
+    awful.key({ modkey, "Control"   }, "Right", 
+    function()
+        for i = 1, screen.count() do
+            awful.tag.viewnext(i)
+        end
+    end ),
 
     -----  Sound ------
     awful.key({ modkey}, "[", function () awful.spawn("amixer -D pulse sset Master 5%-") end, {description = "increase volume", group = "custom"}),
@@ -467,6 +495,19 @@ clientkeys = awful.util.table.join(
 --            c.minimized = true
 --        end ,
 --        {description = "minimize", group = "client"}),
+
+awful.button({ modkey }, "4",
+    function (c)
+        c.unfocuse = c.focuse
+        c:raise()
+        awful.tag.viewnext()
+    end ),
+awful.button({ modkey }, "5",
+    function (c)
+        c.unfocuse = c.focuse
+        c:raise()
+        awful.tag.viewprev()
+    end ),
 
 
 awful.key({ altkey, "Shift" }, "m",
