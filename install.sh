@@ -3,7 +3,8 @@ sudo mkdir -p /usr/share/awesome/themes/applemann/
 mkdir -p /home/martin/.config/awesome/ 
 
 sudo cp -rf theme/* /usr/share/awesome/themes/applemann/
-cp -rf src/* /home/martin/.config/awesome/
+cp src/rc.lua /home/martin/.config/awesome/ 
+sudo cp -rf src/* /usr/share/awesome/lib/
 cp autorun.sh /home/martin/.config/awesome/ 
 
 

@@ -48,7 +48,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(awful.util.get_themes_dir() .. "rbown/theme.lua")
+beautiful.init(awful.util.get_themes_dir() .. "applemann/theme.lua")
 --beautiful.init(awful.util.get_themes_dir() .. "fence/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
@@ -250,7 +250,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    awful.tag({ "1", "2", "3", "4", "5", "6" }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -423,8 +423,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, }, "q", awesome.quit, {description = "quit awesome", group = "awesome"}),
 
     awful.key({ modkey, }, "f", function () awful.util.spawn_with_shell("firefox") end, {description = "start firefox", group = "launcher"}),
+    awful.key({ modkey, }, "g", function () awful.util.spawn_with_shell("google-chrome") end, {description = "start google-chrome", group = "launcher"}),
     awful.key({ modkey, }, "m", function () awful.util.spawn_with_shell("thunderbird") end, {description = "start thunderbird", group = "launcher"}),
-    awful.key({ modkey, }, ";", function () awful.util.spawn_with_shell("mycmd") end, {description = "start mycmd", group = "launcher"}),
+    awful.key({ ctrlkey, }, ";", function () awful.util.spawn_with_shell("mycmd") end, {description = "start mycmd", group = "launcher"}),
     awful.key({ modkey, }, "k", function () awful.util.spawn_with_shell("krusader") end, {description = "start krusader", group = "launcher"}),
     awful.key({ modkey, }, "v", function () awful.util.spawn_with_shell("virtualbox") end, {description = "start virtualbox", group = "launcher"}),
 
@@ -452,7 +453,7 @@ globalkeys = awful.util.table.join(
 
 
     -- Prompt
-    awful.key({ ctrlkey }, ";", function () awful.screen.focused().mypromptbox:run() end, {description = "run prompt", group = "launcher"})
+    awful.key({ modkey }, ";", function () awful.screen.focused().mypromptbox:run() end, {description = "run prompt", group = "launcher"})
 
 --    awful.key({ modkey }, "x",
 --              function ()
