@@ -75,7 +75,7 @@ theme.border_marked = "#CC9393"
 
 -- {{{ Titlebars
 theme.titlebar_bg_focus  = "#3F3F3F"
-theme.titlebar_bg_normal = "#3F3F3F"
+theme.titlebar_bg_normal = "#343F3F"
 theme.tooltip_bg = "#000000"
 -- }}}
 
@@ -90,8 +90,8 @@ theme.tooltip_bg = "#000000"
 theme.taglist_bg_focus = "#661d1d"
 --theme.taglist_bg_focus = "#000000"
 -- }}}
-theme.bg_normal     = "#222222"
-theme.bg_focus      = "#535d6c"
+theme.bg_normal     = "#333333"
+theme.bg_focus      = "#222222"
 theme.bg_urgent     = "#ff0000"
 theme.bg_minimize   = "#444444"
 theme.bg_systray    = theme.bg_normal

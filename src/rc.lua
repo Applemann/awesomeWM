@@ -271,7 +271,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "bottom", screen = s, height = 20 })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = 20 })
 
     -- Create net widgets
     net_wireless = net_widgets.wireless({interface="wlan0"})
@@ -476,12 +476,12 @@ globalkeys = awful.util.table.join(
 
 
 clientkeys = awful.util.table.join(
---    awful.key({ modkey,           }, "f",
---        function (c)
---            c.fullscreen = not c.fullscreen
---            c:raise()
---        end,
---        {description = "toggle fullscreen", group = "client"}),
+    awful.key({ altkey, "Shift"          }, "f",
+        function (c)
+            c.fullscreen = not c.fullscreen
+            c:raise()
+        end,
+        {description = "toggle fullscreen", group = "client"}),
 
 
     awful.key({ altkey, "Shift"   }, "q",      function (c) c:kill()                         end, {description = "close", group = "client"}), 
@@ -711,31 +711,31 @@ client.connect_signal("request::titlebars", function(c)
         end)
     )
 
-    awful.titlebar(c) : setup {
-        { -- Left
-            awful.titlebar.widget.iconwidget(c),
-            buttons = buttons,
-            layout  = wibox.layout.fixed.horizontal
-        },
-        { -- Middle
-            { -- Title
-                align  = "center",
-                widget = awful.titlebar.widget.titlewidget(c)
-            },
-            buttons = buttons,
-            layout  = wibox.layout.flex.horizontal
-        },
-        { -- Right
---            awful.titlebar.widget.floatingbutton (c),
-            awful.titlebar.widget.minimizebutton(c), 
-            awful.titlebar.widget.maximizedbutton(c),
---            awful.titlebar.widget.stickybutton   (c),
---            awful.titlebar.widget.ontopbutton    (c),
-            awful.titlebar.widget.closebutton    (c),
-            layout = wibox.layout.fixed.horizontal()
-        },
-        layout = wibox.layout.align.horizontal
-    }
+    --awful.titlebar(c) : setup {
+    --    { -- Left
+    --        awful.titlebar.widget.iconwidget(c),
+    --        buttons = buttons,
+    --        layout  = wibox.layout.fixed.horizontal
+    --    },
+    --    { -- Middle
+    --        { -- Title
+    --            align  = "center",
+    --            widget = awful.titlebar.widget.titlewidget(c)
+    --        },
+    --        buttons = buttons,
+    --        layout  = wibox.layout.flex.horizontal
+    --    },
+    --    { -- Right
+--  --          awful.titlebar.widget.floatingbutton (c),
+    --        awful.titlebar.widget.minimizebutton(c), 
+    --        awful.titlebar.widget.maximizedbutton(c),
+--  --          awful.titlebar.widget.stickybutton   (c),
+--  --          awful.titlebar.widget.ontopbutton    (c),
+    --        awful.titlebar.widget.closebutton    (c),
+    --        layout = wibox.layout.fixed.horizontal()
+    --    },
+    --    layout = wibox.layout.align.horizontal
+    --}
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
